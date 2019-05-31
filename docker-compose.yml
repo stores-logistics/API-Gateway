@@ -1,0 +1,21 @@
+version: '2.1'
+services:
+  api-gateway:
+    build: .
+    environment:
+      PORT: '5000'
+      SHOW_URLS: 'true'
+      TRADINGS_URL: '192.168.99.102'
+      TRADINGS_PORT: '4005'
+      TRADINGS_ENTRY: 'trading'
+      PRODUCTS_URL: '192.168.99.101'
+      PRODUCTS_PORT: '3000'
+      PRODUCTS_ENTRY: 'products'
+      STORES_URL: ''
+      STORES_PORT: ''
+      STORES_ENTRY: ''
+      USERS_URL: ''
+      USERS_PORT: ''
+      USERS_ENTRY: ''
+    ports:
+      - '5000:5000'
