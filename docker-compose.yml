@@ -5,7 +5,7 @@ services:
     environment:
       PORT: '5000'
       SHOW_URLS: 'true'
-      TRADINGS_URL: '192.168.99.102'
+      TRADINGS_URL: '192.168.99.101'
       TRADINGS_PORT: '4005'
       TRADINGS_ENTRY: 'trading'
       PRODUCTS_URL: '192.168.99.101'
@@ -14,8 +14,8 @@ services:
       STORES_URL: ''
       STORES_PORT: ''
       STORES_ENTRY: ''
-      USERS_URL: ''
-      USERS_PORT: ''
-      USERS_ENTRY: ''
+      USERS_URL: '192.168.99.101'
+      USERS_PORT: '3000'
+      USERS_ENTRY: 'courses-ms/resources/courses'
     ports:
       - '5000:5000'

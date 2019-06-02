@@ -2,13 +2,15 @@ export const usersTypeDef = `
 type User { 
     code: Int!
     name: String!
-    credits: Int!
-    professor: String!
+    lastName: String!
+    cabin: String!
+    creditCard: String!
 }
 input UserInput {
     name: String!
-    credits: Int!
-    professor: String!
+    lastName: String!
+    cabin: String!
+    creditCard: String!
 }`;
 
 export const usersQueries = `

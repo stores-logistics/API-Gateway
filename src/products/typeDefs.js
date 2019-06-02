@@ -7,7 +7,7 @@ type Product {
     image: String!
     storeId: Int!
     quantity: Int!
-    cost: Double!
+    cost: Float!
 }
 input ProductInput {
     name: String!
@@ -16,7 +16,7 @@ input ProductInput {
     image: String!
     storeId: Int!
     quantity: Int!
-    cost: Double!
+    cost: Float!
 }`;
 
 export const productsQueries = `

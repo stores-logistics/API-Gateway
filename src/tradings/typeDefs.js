@@ -5,14 +5,14 @@ type Trading {
     store_id: Int!
     user_id: Int!
     product_id: String!
-    price: Double!
+    price: Float!
 }
 input TradingInput {
     timestamp: DateTime!
     store_id: Int!
     user_id: Int!
     product_id: String!
-    price: Double!
+    price: Float!
 }`;
 
 export const tradingsQueries = `
