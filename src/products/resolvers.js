@@ -7,8 +7,8 @@ const resolvers = {
 	Query: {
 		allProducts: (_) =>
 			getRequest(URL, ''),
-		productByCode: (_, { code }) =>
-			generalRequest(`${URL}/${code}`, 'GET'),
+		productByCode: (_, { _id }) =>
+			generalRequest(`${URL}/${_id}`, 'GET'),
 		productsByName: (_, { name }) => 
 			generalRequest(`${URL}/name/${name}`, 'GET'),
 		productsByType: (_, { type }) => 
@@ -19,10 +19,10 @@ const resolvers = {
 	Mutation: {
 		createProduct: (_, { product }) =>
 			generalRequest(`${URL}`, 'POST', product),
-		updateProduct: (_, { code, product }) =>
-			generalRequest(`${URL}/${code}`, 'PUT', product),
-		deleteProduct: (_, { code }) =>
-			generalRequest(`${URL}/${code}`, 'DELETE')
+		updateProduct: (_, { _id, product }) =>
+			generalRequest(`${URL}/${_id}`, 'PATCH', product),
+		deleteProduct: (_, { _id }) =>
+			generalRequest(`${URL}/${_id}`, 'DELETE')
 	}
 };
 

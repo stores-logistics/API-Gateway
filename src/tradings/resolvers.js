@@ -7,20 +7,20 @@ const resolvers = {
 	Query: {
 		allTradings: (_) =>
 			getRequest(URL, ''),
-		tradingByCode: (_, { code }) =>
-			generalRequest(`${URL}/${code}`, 'GET'),
-		tradingsByStoreId: (_, { code }) =>
-			generalRequest(`${URL}/store/${code}`, 'GET'),
-		tradingsByUserId: (_, { code }) =>
-			generalRequest(`${URL}/user/${code}`, 'GET'),
+		tradingByCode: (_, { _id }) =>
+			generalRequest(`${URL}/${_id}`, 'GET'),
+		tradingsByStoreId: (_, { store_id }) =>
+			generalRequest(`${URL}/store/${store_id}`, 'GET'),
+		tradingsByUserId: (_, { user_id }) =>
+			generalRequest(`${URL}/user/${user_id}`, 'GET'),
 	},
 	Mutation: {
 		createTrading: (_, { trading }) =>
 			generalRequest(`${URL}`, 'POST', trading),
-		updateTrading: (_, { code, trading }) =>
-			generalRequest(`${URL}/${code}`, 'PUT', trading),
-		deleteTrading: (_, { code }) =>
-			generalRequest(`${URL}/${code}`, 'DELETE')
+		updateTrading: (_, { _id, trading }) =>
+			generalRequest(`${URL}/${_id}`, 'PATCH', trading),
+		deleteTrading: (_, { _id }) =>
+			generalRequest(`${URL}/${_id}`, 'DELETE')
 	}
 };
 

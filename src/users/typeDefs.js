@@ -1,10 +1,10 @@
 export const usersTypeDef = `
 type User { 
-    code: Int!
-    name: String!
-    lastName: String!
-    cabin: String!
-    creditCard: String!
+    code: Int
+    name: String
+    lastName: String
+    cabin: String
+    creditCard: String
 }
 input UserInput {
     name: String!
@@ -20,6 +20,6 @@ export const usersQueries = `
 
 export const usersMutations = `
     createUser(user: UserInput!): User!
-    deleteUser(code: Int!): Int
+    deleteUser(code: Int!): User!
     updateUser(code: Int!, user: UserInput!): User!
 `;

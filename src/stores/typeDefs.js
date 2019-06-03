@@ -1,23 +1,27 @@
 export const storesTypeDef = `
 type Store { 
-    code: Int!
-    name: String!
-    credits: Int!
-    professor: String!
+    id: Int
+    name: String
+    type: String
+    owner: String
+    ubication: String
+    dates: String
 }
 input StoreInput {
     name: String!
-    credits: Int!
-    professor: String!
+    type: String!
+    owner: String!
+    ubication: String!
+    dates: String!
 }`;
 
 export const storesQueries = `
     allStores: [Store]!
-    storeByCode(code: Int!): Store!
+    storeByCode(id: Int!): Store!
 `;
 
 export const storesMutations = `
     createStore(store: StoreInput!): Store!
-    deleteStore(code: Int!): Int
-    updateStore(code: Int!, store: StoreInput!): Store!
+    deleteStore(id: Int!): String
+    updateStore(id: Int!, store: StoreInput!): Store!
 `;
