@@ -7,7 +7,7 @@ services:
       SHOW_URLS: 'true'
       TRADINGS_URL: '192.168.99.101'
       TRADINGS_PORT: '4005'
-      TRADINGS_ENTRY: 'tradings'
+      TRADINGS_ENTRY: 'trading'
       PRODUCTS_URL: '192.168.99.101'
       PRODUCTS_PORT: '3000'
       PRODUCTS_ENTRY: 'products'
