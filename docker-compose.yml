@@ -7,7 +7,7 @@ services:
       SHOW_URLS: 'true'
       TRADINGS_URL: '3.83.64.54'
       TRADINGS_PORT: '4005'
-      TRADINGS_ENTRY: 'trading'
+      TRADINGS_ENTRY: 'tradings'
       PRODUCTS_URL: '3.89.226.210'
       PRODUCTS_PORT: '3000'
       PRODUCTS_ENTRY: 'products'
