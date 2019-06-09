@@ -6,6 +6,8 @@ type Store {
     owner: String
     ubication: String
     dates: String
+    description: String
+    image: String
 }
 input StoreInput {
     name: String!
@@ -13,6 +15,8 @@ input StoreInput {
     owner: String!
     ubication: String!
     dates: String!
+    description: String!
+    image: String!
 }`;
 
 export const storesQueries = `

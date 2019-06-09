@@ -4,8 +4,6 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import { mergeSchemas } from './utilities';
 
-import OKGGraphQLScalars , { DateTime, OKGScalarDefinitions } from '@okgrow/graphql-scalars';
-
 import {
 	productsMutations,
 	productsQueries,
@@ -42,7 +40,6 @@ import tradingsResolvers from './tradings/resolvers';
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		'scalar DateTime', //For timestamp values in the databases
 		tradingsTypeDef,
 		productsTypeDef,
 		storesTypeDef,

@@ -5,12 +5,28 @@ type User {
     lastName: String
     cabin: String
     creditCard: String
+    username: String
+    password: String
+    phoneNumber: Int
+    address: String
+    city: String
+    age: Int
+    avatar: String
+    type: String
 }
 input UserInput {
     name: String!
     lastName: String!
     cabin: String!
     creditCard: String!
+    username: String!
+    password: String!
+    phoneNumber: Int!
+    address: String!
+    city: String!
+    age: Int!
+    avatar: String!
+    type: String!
 }`;
 
 export const usersQueries = `
