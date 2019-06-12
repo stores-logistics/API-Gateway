@@ -1,0 +1,15 @@
+Gente lo que tienen que tener en cuenta son los puertos pero al final eso es re breve.
+
+Para cambiar los puertos de Trading y Product lo unico que tienen que ahcer es cambiarlo en el docker-compose.
+  - Si de casualidad deciden cambiarle el puerto al de product deben también cambiarlo en la carpeta pm2_config/config.js el campo port lo cambian por el que le hayan puesto.
+
+Para cambiar los de User y Store tienen que hacerlo tanto en el docker-compose como en en el env/server.xml donde hay una parte que dice algo como puerto del servidor, por defecto estos estan en el 3000 lo cambian por el que vallana  usar
+
+Lo segundo que hay que tener en cuenta so0n los pueetos de las bases de datos, esto también es breve, lo unico que tienen que hacer es en el docker compose en vez de poner puerto "3306:3306" o "27017:27017" ponen "3336:3306" o "27000:27017" por ejemplo, en otras palabras usan otro puerto redireccionando al puerto por defecto de las bases de datos. (Solo lo cambian hay, no tienen que cambiar nada más)
+
+En el API-gateway tienen que hacer dos cosas. 
+
+  1. Correr el comando nom install --save jsonwebtoken
+  2. Cambiar los puertos y urls dependiendo de la ip de la maquina y los puertos que han pueto anteriormente.
+  
+Despues de esto corren docker-compose build y up en los 4 microservicios y el api-gateway.
