@@ -17,5 +17,8 @@ services:
       USERS_URL: '3.83.64.54'
       USERS_PORT: '3000'
       USERS_ENTRY: 'courses-ms/resources/courses'
+      LOGIN_URL: '3.83.64.54'
+      LOGIN_PORT: '3000'
+      LOGIN_ENTRY: 'courses-ms/resources/auth'
     ports:
       - '5000:5000'

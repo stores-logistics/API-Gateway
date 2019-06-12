@@ -29,6 +29,14 @@ import {
 import usersResolvers from './users/resolvers';
 
 import {
+	loginMutations,
+	loginQueries,
+	loginTypeDef
+} from './login/typeDefs';
+
+import loginResolvers from './login/resolvers';
+
+import {
 	tradingsMutations,
 	tradingsQueries,
 	tradingsTypeDef
@@ -43,19 +51,22 @@ const mergedTypeDefs = mergeSchemas(
 		tradingsTypeDef,
 		productsTypeDef,
 		storesTypeDef,
-		usersTypeDef
+		usersTypeDef,
+		loginTypeDef
 	],
 	[
 		tradingsQueries,
 		productsQueries,
 		storesQueries,
-		usersQueries
+		usersQueries,
+		loginQueries
 	],
 	[
 		tradingsMutations,
 		productsMutations,
 		storesMutations,
-		usersMutations
+		usersMutations,
+		loginMutations
 	]
 );
 
@@ -67,6 +78,7 @@ export default makeExecutableSchema({
 		tradingsResolvers,
 		productsResolvers,
 		usersResolvers,
-		storesResolvers
+		storesResolvers,
+		loginResolvers
 	)
 });

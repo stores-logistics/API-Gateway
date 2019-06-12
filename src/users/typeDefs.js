@@ -13,6 +13,7 @@ type User {
     age: Int
     avatar: String
     type: String
+    storeId: String
 }
 input UserInput {
     name: String!
@@ -27,6 +28,7 @@ input UserInput {
     age: Int!
     avatar: String!
     type: String!
+    storeId: String!
 }`;
 
 export const usersQueries = `
