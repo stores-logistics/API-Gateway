@@ -7,7 +7,7 @@ type User {
     creditCard: String
     username: String
     password: String
-    phoneNumber: Int
+    phoneNumber: String
     address: String
     city: String
     age: Int
@@ -22,7 +22,7 @@ input UserInput {
     creditCard: String!
     username: String!
     password: String!
-    phoneNumber: Int!
+    phoneNumber: String!
     address: String!
     city: String!
     age: Int!

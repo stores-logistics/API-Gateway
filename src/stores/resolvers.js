@@ -7,16 +7,16 @@ const resolvers = {
 	Query: {
 		allStores: (_) =>
 			getRequest(URL, ''),
-		storeByCode: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'GET'),
+		storeByCode: (_, { code }) =>
+			generalRequest(`${URL}/${code}`, 'GET'),
 	},
 	Mutation: {
 		createStore: (_, { store }) =>
 			generalRequest(`${URL}`, 'POST', store),
-		updateStore: (_, { id, store }) =>
-			generalRequest(`${URL}/${id}`, 'PATCH', store),
-		deleteStore: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'DELETE')
+		updateStore: (_, { code, store }) =>
+			generalRequest(`${URL}/${code}`, 'PATCH', store),
+		deleteStore: (_, { code }) =>
+			generalRequest(`${URL}/${code}`, 'DELETE')
 	}
 };
 
