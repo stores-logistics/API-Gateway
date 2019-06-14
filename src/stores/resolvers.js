@@ -14,7 +14,7 @@ const resolvers = {
 		createStore: (_, { store }) =>
 			generalRequest(`${URL}`, 'POST', store),
 		updateStore: (_, { code, store }) =>
-			generalRequest(`${URL}/${code}`, 'PATCH', store),
+			generalRequest(`${URL}/${code}`, 'PUT', store),
 		deleteStore: (_, { code }) =>
 			generalRequest(`${URL}/${code}`, 'DELETE')
 	}
