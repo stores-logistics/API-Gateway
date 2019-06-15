@@ -189,41 +189,49 @@ const createProduct = `mutation{
 
 `mutation{
   createStore(store: {
-    name: "tienda 1"
-    type: "Cosmeticos"
-    owner: "Jorge"
-    ubication: "2ndo piso"
-    dates: "2012-03-19"
+    name: "La Roche-Posay"
+    type: "Salud & belleza"
+    owner: "Stefano La Roche"
+    ubication: "P4-L16"
+    dates: "L-V 9:00-17:00"
+    description: "Todo en el cuidado para la piel de la familia."
+    img: "https://cdn.joinhoney.com/images/lp/store-logos/laroche-posay-logo.png"
   }) {
-    id
+    code
     name
     type
     owner
     ubication
     dates
+    description
+    img
   }
 }`
 
 `query{
   allStores{
-    id
+    code
     name
     type
     owner
     ubication
     dates
+    description
+    img
   }
 }`
 
 `query{
   storeByCode(id: 1)
   {
-    id
+    code
     name
     type
     owner
     ubication
     dates
+    description
+    img
   }
 }`
 

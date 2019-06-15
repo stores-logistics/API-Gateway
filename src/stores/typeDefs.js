@@ -26,6 +26,6 @@ export const storesQueries = `
 
 export const storesMutations = `
     createStore(store: StoreInput!): Store!
-    deleteStore(code: Int!): String
+    deleteStore(code: Int!): Int
     updateStore(code: Int!, store: StoreInput!): Store!
 `;
