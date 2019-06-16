@@ -9,6 +9,8 @@ import graphQLSchema from './graphQLSchema';
 
 import { formatErr } from './utilities';
 
+var jwt = require('jsonwebtoken')
+
 const app = new Koa();
 const router = new KoaRouter();
 const PORT = process.env.PORT || 5000;
@@ -18,13 +20,23 @@ app.use(koaCors());
 
 // read token from header
 app.use(async (ctx, next) => {
+	if (ctx.header.Public){
+		await next();
+	}
 	if (ctx.header.authorization) {
 		const token = ctx.header.authorization.match(/Bearer ([A-Za-z0-9]+)/);
 		if (token && token[1]) {
-			ctx.state.token = token[1];
+			jwt.verify(token, 'Secret Password', async function(err, decoded) {
+				if (err)
+					return "No valid token"
+				else
+					await next();
+			});
 		}
 	}
-	await next();
+	if(ctx.method == "GET")
+		await next();
+	return "No authorization";
 });
 
 // GraphQL
