@@ -34,6 +34,7 @@ input UserInput {
 export const usersQueries = `
     allUsers: [User]!
     userByCode(code: Int!): User!
+    userByUsername(username: String!): User!
 `;
 
 export const usersMutations = `

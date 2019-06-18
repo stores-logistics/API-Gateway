@@ -9,6 +9,8 @@ const resolvers = {
 			getRequest(URL, ''),
 		userByCode: (_, { code }) =>
 			generalRequest(`${URL}/${code}`, 'GET'),
+		userByUsername: (_, { username }) =>
+			generalRequest(`${URL}/username/${username}`, 'GET')
 	},
 	Mutation: {
 		createUser: (_, { user }) =>
