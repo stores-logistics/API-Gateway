@@ -25,7 +25,7 @@ app.use(async (ctx, next) => {
 	console.log("");
 	const dir1 = "http://localhost:5000/";
 	const dir2 = "http://localhost:5000/catalog/";
-	const dir3 = ctx.header.referer.match("http://localhost:5000/catalog/");
+	const dir3 = (ctx.header.referer ? ctx.header.referer.match("http://localhost:5000/catalog/") : "asd");
 	const dir4 = "http://localhost:5000/login";
 	if(ctx.method == "GET")
                 await next();
