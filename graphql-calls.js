@@ -124,16 +124,34 @@ const createProduct = `mutation{
 
 `mutation{
   createUser(user: {
-    name: "Camilo"
-    lastName: "Nieto"
-    cabin: "2019"
-    creditCard: "asdsadasd12312312321"
+    name: "Iván"
+    lastName: "Herrera"
+    cabin: "26D"
+    creditCard: "*3021"
+    username: "biherrerap"
+    password: "xxx"
+    phoneNumber: "3212641516"
+    address: "Cll 42B Bis Sur #78F-28"
+    city: "Bogotá D.C"
+    age: 22
+    avatar: "https://image.flaticon.com/icons/svg/136/136398.svg"
+    type: "Cliente"
+    storeId: "xxx"
   }) {
     code
     name
     lastName
     cabin
     creditCard
+    username
+    password
+    phoneNumber
+    address
+    city
+    age
+    avatar
+    type
+    storeId
   }
 }`
 
@@ -144,6 +162,15 @@ const createProduct = `mutation{
     lastName
     cabin
     creditCard
+    username
+    password
+    phoneNumber
+    address
+    city
+    age
+    avatar
+    type
+    storeId
   }
 }`
 
@@ -154,21 +181,48 @@ const createProduct = `mutation{
     lastName
     cabin
     creditCard
+    username
+    password
+    phoneNumber
+    address
+    city
+    age
+    avatar
+    type
+    storeId
   }
 }`
 
 `mutation{
   updateUser(code: 1, user: {
-    name: "Camilo Esteban"
-    lastName: "Nieto Barrera"
-    cabin: "201"
-    creditCard: "217839012jksad"
+    name: "Iván"
+    lastName: "Herrera"
+    cabin: "26D"
+    creditCard: "*3021"
+    username: "biherrerap"
+    password: "xxx"
+    phoneNumber: "3212641516"
+    address: "Cll 42B Bis Sur #78F-28"
+    city: "Bogotá D.C"
+    age: 22
+    avatar: "https://image.flaticon.com/icons/svg/136/136398.svg"
+    type: "Cliente"
+    storeId: "xxx"
   }) {
     code
     name
     lastName
     cabin
     creditCard
+    username
+    password
+    phoneNumber
+    address
+    city
+    age
+    avatar
+    type
+    storeId
   }
 }`
 
@@ -180,6 +234,15 @@ const createProduct = `mutation{
     lastName
     cabin
     creditCard
+    username
+    password
+    phoneNumber
+    address
+    city
+    age
+    avatar
+    type
+    storeId
   }
 }`
 
