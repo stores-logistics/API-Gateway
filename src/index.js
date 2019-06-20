@@ -23,30 +23,27 @@ app.use(async (ctx, next) => {
 	console.log("");
 	console.log(ctx);
 	console.log("");
-	/*const dir1 = "http://localhost:5000/";
+	const dir1 = "http://localhost:5000/";
 	const dir2 = "http://localhost:5000/catalog/";
 	const dir3 = ctx.header.referer.match("http://localhost:5000/catalog/");
 	const dir4 = "http://localhost:5000/login";
-	if (ctx.header.referer == dir1 || dir2 == dir3 || ctx.header.referer == dir4){
+	if(ctx.method == "GET")
+                await next();
+	else if (ctx.header.referer == dir1 || dir2 == dir3 || ctx.header.referer == dir4)
 		await next();
-	}
-	if (ctx.header.authorization) {
+	else if (ctx.header.authorization) {
 		const token = ctx.header.authorization.match(/Bearer ([A-Za-z0-9\S\/\-\_\.]+)/);
 		if (token && token[1]) {
 			console.log(token);
-			jwt.verify(token[1], 'Secret Password', async function(err, decoded) {
-				if (err){
-					console.log(err);
-					return "No valid token";
-				}
-				else
-					await next();
-			});
+			try{
+                                jwt.verify(token[1], 'Secret Password');
+                                await next();
+                        } catch(ex){
+                                return ex.message;
+                        }
 		}
 	}
-	if(ctx.method == "GET")
-		await next();
-	*/await next();
+
 	
 });
 

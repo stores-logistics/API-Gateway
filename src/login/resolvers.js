@@ -27,7 +27,7 @@ const resolvers = {
 					if (res === 'LDAPException found'){
 						return res
 					}else{
-						var token = await jwt.sign({username: res}, 'Secret Password', {expiresIn: 60 * 60 * 24})
+						var token = await jwt.sign({username: credentials.username}, 'Secret Password', {expiresIn: "1h"})
 						return token
 					}				
 				}else{
