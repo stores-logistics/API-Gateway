@@ -23,13 +23,15 @@ app.use(async (ctx, next) => {
 	console.log("");
 	console.log(ctx);
 	console.log("");
-	const dir1 = "http://localhost:5000/";
-	const dir2 = "http://localhost:5000/catalog/";
-	const dir3 = (ctx.header.referer ? ctx.header.referer.match("http://localhost:5000/catalog/") : "asd");
-	const dir4 = "http://localhost:5000/login";
+	const dir1 = "http://35.193.85.93:5001/";
+	const dir2 = "http://35.193.85.93:5001/catalog/";
+	const dir4 = "http://35.193.85.93:5001/login";
+	const loc1 = "http://localhost:5000/"
+	const loc2 = "http://localhost:5000/catalog/";
+	const loc4 = "http://localhost:5000/login";
 	if(ctx.method == "GET")
                 await next();
-	else if (ctx.header.referer == dir1 || dir2 == dir3 || ctx.header.referer == dir4)
+	else if (ctx.header.referer == dir1 || dir2 == ctx.header.referer.match(dir2) || ctx.header.referer == dir4 || ctx.header.referer == loc1 || loc2 == ctx.header.referer.match(loc2) || ctx.header.referer == loc4)
 		await next();
 	else if (ctx.header.authorization) {
 		const token = ctx.header.authorization.match(/Bearer ([A-Za-z0-9\S\/\-\_\.]+)/);
