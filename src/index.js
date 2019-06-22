@@ -21,7 +21,7 @@ app.use(koaCors());
 // GraphQL
 const graphql = graphqlKoa((ctx) => ({
 	schema: graphQLSchema,
-	context: { token: ctx.state.token },
+	context: ctx,
 	formatError: formatErr
 }));
 //router.post('/graphql', koaBody(), (ctx, next) => graphqlKoa({ schema: schemas.EmailSchema, formatError, context: ctx })(ctx, next));

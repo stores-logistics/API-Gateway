@@ -24,8 +24,16 @@ const resolvers = {
 			try{
 				let res = await	generalRequest(`${URL}`, 'POST', credentials)
 				if(res){
-						var token = await jwt.sign(res, 'Secret Password', {expiresIn: "1h"})
-						return token			
+					console.log("\nuser: ",res, "\n");
+					const payload = {
+						username: res.username,
+						role: res.type,
+						code: res.code,
+						storeId: res.storeId
+					};
+					
+					var token = await jwt.sign(payload, 'Secret Password', {expiresIn: "1h"})
+					return token			
 				}else{
 					return -1
 				}

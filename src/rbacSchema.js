@@ -1,7 +1,9 @@
+const jwt = require('jsonwebtoken');
+
 function AuthRbacWithAtrribConstrain(request, header, method, constrains){
     try {
         const payload = isValidToken(header);
-        isValidRole(payload.type, method);
+        isValidRole(payload.role, method);
         validateConstrains(constrains);
         return request;
     }catch(ex){
@@ -11,6 +13,8 @@ function AuthRbacWithAtrribConstrain(request, header, method, constrains){
 
 export default function AuthRbac(request, header, method){
     try {
+	console.log("header auth: ", header);
+	    console.log("method: ", method);
         const {type} = isValidToken(header);
         isValidRole(type, method);
         return request;
@@ -27,6 +31,7 @@ function validateConstrains(constrains, user){
 };
 
 function isValidToken(header){
+	console.log("header is valid token: ", header);
     if (header.authorization) {
 		const token = header.authorization.match(/Bearer ([A-Za-z0-9\S\/\-\_\.]+)/);
 		if (token && token[1]) {

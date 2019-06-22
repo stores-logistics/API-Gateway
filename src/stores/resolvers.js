@@ -7,13 +7,16 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const resolvers = {
 	Query: {
 		allStores: (parent, args, ctx, info) => {
+			console.log(ctx);
 			return getRequest(URL, '');
 			//const request = getRequest(URL, '');
 			//return auth(request, ctx.header, info.fieldName);
 		},
 		storeByCode: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args.code}`, 'GET');
-			return auth(request, ctx.header, info.fieldName);
+			console.log("ctx: ", ctx);
+			return generalRequest(`${URL}/${args.code}`, 'GET');
+			//const request = generalRequest(`${URL}/${args.code}`, 'GET');
+			//return auth(request, ctx.header, info.fieldName);
 		},
 	},
 	Mutation: {

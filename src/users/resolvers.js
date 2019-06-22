@@ -16,7 +16,7 @@ const resolvers = {
 		},
 		userByUsername: (parent, args, ctx, info) => {
 			const request = generalRequest(`${URL}/username/${args.username}`, 'GET');
-			return auth(request, ctx.header, info.fieldName);
+			return request;//auth(request, ctx.header, info.fieldName);
 		}
 	},
 	Mutation: {
