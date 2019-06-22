@@ -1,26 +1,41 @@
 import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
+import auth from '../rbacSchema';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		allTradings: (_) =>
-			getRequest(URL, ''),
-		tradingByCode: (_, { _id }) =>
-			generalRequest(`${URL}/${_id}`, 'GET'),
-		tradingsByStoreId: (_, { store_id }) =>
-			generalRequest(`${URL}/store/${store_id}`, 'GET'),
-		tradingsByUserId: (_, { user_id }) =>
-			generalRequest(`${URL}/user/${user_id}`, 'GET'),
+		allTradings: (parent, args, ctx, info) => {
+			const request = getRequest(URL, '');
+			return auth(request, ctx.header, info.fieldName);
+		},
+		tradingByCode: (parent, args, ctx, info) =>{
+			const request = generalRequest(`${URL}/${args._id}`, 'GET');
+			return auth(request, ctx.header, info.fieldName);
+		},
+		tradingsByStoreId: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}/store/${args.store_id}`, 'GET');
+			return auth(request, ctx.header, info.fieldName);
+		},
+		tradingsByUserId: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}/user/${args.user_id}`, 'GET');
+			return auth(request, ctx.header, info.fieldName);
+		},
 	},
 	Mutation: {
-		createTrading: (_, { trading }) =>
-			generalRequest(`${URL}`, 'POST', trading),
-		updateTrading: (_, { _id, trading }) =>
-			generalRequest(`${URL}/${_id}`, 'PATCH', trading),
-		deleteTrading: (_, { _id }) =>
-			generalRequest(`${URL}/${_id}`, 'DELETE')
+		createTrading: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}`, 'POST', args.trading);
+			return auth(request, ctx.header, info.fieldName);
+		},
+		updateTrading: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}/${args._id}`, 'PATCH', args.trading);
+			return auth(request, ctx.header, info.fieldName);
+		},
+		deleteTrading: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}/${args._id}`, 'DELETE');
+			return auth(request, ctx.header, info.fieldName);
+		}
 	}
 };
 

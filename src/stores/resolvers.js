@@ -1,22 +1,34 @@
 import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
+import auth from '../rbacSchema';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		allStores: (_) =>
-			getRequest(URL, ''),
-		storeByCode: (_, { code }) =>
-			generalRequest(`${URL}/${code}`, 'GET'),
+		allStores: (parent, args, ctx, info) => {
+			return getRequest(URL, '');
+			//const request = getRequest(URL, '');
+			//return auth(request, ctx.header, info.fieldName);
+		},
+		storeByCode: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}/${args.code}`, 'GET');
+			return auth(request, ctx.header, info.fieldName);
+		},
 	},
 	Mutation: {
-		createStore: (_, { store }) =>
-			generalRequest(`${URL}`, 'POST', store),
-		updateStore: (_, { code, store }) =>
-			generalRequest(`${URL}/${code}`, 'PUT', store),
-		deleteStore: (_, { code }) =>
-			generalRequest(`${URL}/${code}`, 'DELETE')
+		createStore: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}`, 'POST', args.store);
+			return auth(request, ctx.header, info.fieldName);
+		},
+		updateStore: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}/${args.code}`, 'PUT', args.store);
+			return auth(request, ctx.header, info.fieldName);
+		},
+		deleteStore: (parent, args, ctx, info) => {
+			const request = generalRequest(`${URL}/${args.code}`, 'DELETE');
+			return auth(request, ctx.header, info.fieldName);
+		}
 	}
 };
 

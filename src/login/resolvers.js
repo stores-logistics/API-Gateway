@@ -24,12 +24,8 @@ const resolvers = {
 			try{
 				let res = await	generalRequest(`${URL}`, 'POST', credentials)
 				if(res){
-					if (res === 'LDAPException found'){
-						return res
-					}else{
-						var token = await jwt.sign({username: credentials.username}, 'Secret Password', {expiresIn: "1h"})
-						return token
-					}				
+						var token = await jwt.sign(res, 'Secret Password', {expiresIn: "1h"})
+						return token			
 				}else{
 					return -1
 				}
