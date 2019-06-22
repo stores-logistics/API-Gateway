@@ -1,4 +1,4 @@
-export function AuthRbacWithAtrribConstrain(request, header, method, constrains){
+function AuthRbacWithAtrribConstrain(request, header, method, constrains){
     try {
         const payload = isValidToken(header);
         isValidRole(payload.type, method);
@@ -48,141 +48,141 @@ function isValidRole(role, method){
 const rbac = {
     login: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
 
     allProducts: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     productByCode: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     productsByName: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     productsByType: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     productsByStore: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     createProduct: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": false
     },
     deleteProduct: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": false
     },
     updateProduct: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": false
     },
 
     allStores: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     storeByCode: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     createStore: {
         "Admin": true, 
-        "Store Manager": false, 
+        "Manager": false, 
         "Passanger": false
     },
     deleteStore: {
         "Admin": true, 
-        "Store Manager": false, 
+        "Manager": false, 
         "Passanger": false
     },
     updateStore: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": false
     },
 
     allTradings: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": false
     },
     tradingByCode: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": false
     },
     tradingsByStoreId: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": false
     },
     tradingsByUserId: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     createTrading: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     deleteTrading: {
         "Admin": true, 
-        "Store Manager": false, 
+        "Manager": false, 
         "Passanger": false
     },
     updateTrading: {
         "Admin": true, 
-        "Store Manager": false, 
+        "Manager": false, 
         "Passanger": false
     },
 
     allUsers: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     userByCode: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     userByUsername: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     },
     createUser: {
         "Admin": true, 
-        "Store Manager": false, 
+        "Manager": false, 
         "Passanger": false
     },
     deleteUser: {
         "Admin": true, 
-        "Store Manager": false, 
+        "Manager": false, 
         "Passanger": false
     },
     updateUser: {
         "Admin": true, 
-        "Store Manager": true, 
+        "Manager": true, 
         "Passanger": true
     }
 };

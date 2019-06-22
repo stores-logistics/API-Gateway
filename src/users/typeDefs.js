@@ -1,4 +1,10 @@
 export const usersTypeDef = `
+enum roles {
+    Admin
+    Manager
+    Passanger
+}
+
 type User { 
     code: Int
     name: String
@@ -12,7 +18,7 @@ type User {
     city: String
     age: Int
     avatar: String
-    type: String
+    type: roles
     storeId: String
 }
 input UserInput {
@@ -27,7 +33,7 @@ input UserInput {
     city: String!
     age: Int!
     avatar: String!
-    type: String!
+    type: roles!
     storeId: String!
 }`;
 
