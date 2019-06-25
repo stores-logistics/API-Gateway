@@ -20,7 +20,7 @@ app.use(koaCors());
 
 // read token from header
 app.use(async (ctx, next) => {
-	console.log("");
+	/*console.log("");
 	console.log(ctx);
 	console.log("");
 	const dir1 = "http://35.193.85.93:5001/";
@@ -46,7 +46,8 @@ app.use(async (ctx, next) => {
 		}
 	}
 
-	
+	*/
+	await next();
 });
 
 // GraphQL
