@@ -162,8 +162,8 @@ const rbac = {
 
     allUsers: {
         "Admin": true, 
-        "Manager": true, 
-        "Passanger": true
+        "Manager": false, 
+        "Passanger": false
     },
     userByCode: {
         "Admin": true, 
