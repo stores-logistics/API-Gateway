@@ -12,7 +12,13 @@ const resolvers = {
 		},
 		userByCode: (parent, args, ctx, info) => {
 			const request = generalRequest(`${URL}/${args.code}`, 'GET');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(request, ctx.header, info.fieldName);
+				return request;
+			}catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		userByUsername: (parent, args, ctx, info) => {
 			const request = generalRequest(`${URL}/username/${args.username}`, 'GET');
