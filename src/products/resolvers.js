@@ -1,6 +1,6 @@
 import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
-import auth from '../rbacSchema';
+import auth from '../security/security';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
