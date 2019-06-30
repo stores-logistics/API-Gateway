@@ -83,17 +83,17 @@ const rbac = {
         "Passanger": true
     },
     createProduct: {
-        "Admin": true, 
+        "Admin": false, 
         "Manager": true, 
         "Passanger": false
     },
     deleteProduct: {
-        "Admin": true, 
+        "Admin": false, 
         "Manager": true, 
         "Passanger": false
     },
     updateProduct: {
-        "Admin": true, 
+        "Admin": false, 
         "Manager": true, 
         "Passanger": false
     },
@@ -126,22 +126,22 @@ const rbac = {
 
     allTradings: {
         "Admin": true, 
-        "Manager": true, 
+        "Manager": false, 
         "Passanger": false
     },
     tradingByCode: {
         "Admin": true, 
-        "Manager": true, 
+        "Manager": false, 
         "Passanger": false
     },
     tradingsByStoreId: {
-        "Admin": true, 
+        "Admin": false, 
         "Manager": true, 
         "Passanger": false
     },
     tradingsByUserId: {
-        "Admin": true, 
-        "Manager": true, 
+        "Admin": false, 
+        "Manager": false, 
         "Passanger": true
     },
     createTrading: {
@@ -162,8 +162,8 @@ const rbac = {
 
     allUsers: {
         "Admin": true, 
-        "Manager": true, 
-        "Passanger": true
+        "Manager": false, 
+        "Passanger": false
     },
     userByCode: {
         "Admin": true, 
