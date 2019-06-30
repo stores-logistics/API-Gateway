@@ -24,7 +24,7 @@ const resolvers = {
 			try{
 				let res = await	generalRequest(`${URL}`, 'POST', credentials)
 				if(res){
-					console.log("\nuser: ",res, "\n");
+					//console.log("\nuser: ",res, "\n");
 					const payload = {
 						username: res.username,
 						role: res.type,

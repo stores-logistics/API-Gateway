@@ -1,56 +1,9 @@
-const jwt = require('jsonwebtoken');
+/**
+ * Existen varios metodos a los que no se les hace la autenticacion
+ * allStores, storeByCode, productsByStore, userByUsername, login
+ */
 
-function AuthRbacWithAtrribConstrain(request, header, method, constrains){
-    try {
-        const payload = isValidToken(header);
-        isValidRole(payload.role, method);
-        validateConstrains(constrains);
-        return request;
-    }catch(ex){
-        return ex;
-    }
-}
-
-export default function AuthRbac(request, header, method){
-    try {
-	console.log("header auth: ", header);
-	    console.log("method: ", method);
-        const {type} = isValidToken(header);
-        isValidRole(type, method);
-        return request;
-    }catch(ex){
-        return ex;
-    }
-}
-
-function validateConstrains(constrains, user){
-    Object.entries(constrains).forEach(([key, value]) => {
-        if(user[key] !== value)
-            throw "You have no permission to perform de action " + key + " over " + value;
-    });
-};
-
-function isValidToken(header){
-	console.log("header is valid token: ", header);
-    if (header.authorization) {
-		const token = header.authorization.match(/Bearer ([A-Za-z0-9\S\/\-\_\.]+)/);
-		if (token && token[1]) {
-            try{
-                const decoded = jwt.verify(token[1], 'Secret Password');
-                return decoded;
-            } catch(ex){
-                throw ex;
-            }
-		}
-    }   
-};
-
-function isValidRole(role, method){
-    if (!rbac[method][role])
-        throw "Yo are not authorized to do that operation.";
-};
-
-const rbac = {
+export const rbacSchema = {
     login: {
         "Admin": true, 
         "Manager": true, 

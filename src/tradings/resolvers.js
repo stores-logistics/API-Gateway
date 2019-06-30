@@ -7,34 +7,69 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const resolvers = {
 	Query: {
 		allTradings: (parent, args, ctx, info) => {
-			const request = getRequest(URL, '');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return getRequest(URL, '');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		tradingByCode: (parent, args, ctx, info) =>{
-			const request = generalRequest(`${URL}/${args._id}`, 'GET');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args._id}`, 'GET');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		tradingsByStoreId: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/store/${args.store_id}`, 'GET');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/store/${args.store_id}`, 'GET');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		tradingsByUserId: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/user/${args.user_id}`, 'GET');
-			return auth(request, ctx.header, info.fieldName);
-		},
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/user/${args.user_id}`, 'GET');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
+		}
 	},
 	Mutation: {
 		createTrading: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}`, 'POST', args.trading);
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}`, 'POST', args.trading);
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		updateTrading: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args._id}`, 'PATCH', args.trading);
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args._id}`, 'PUT', args.trading);
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		deleteTrading: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args._id}`, 'DELETE');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args._id}`, 'DELETE');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		}
 	}
 };

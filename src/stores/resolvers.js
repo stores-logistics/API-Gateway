@@ -7,30 +7,39 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const resolvers = {
 	Query: {
 		allStores: (parent, args, ctx, info) => {
-			console.log(ctx);
 			return getRequest(URL, '');
-			//const request = getRequest(URL, '');
-			//return auth(request, ctx.header, info.fieldName);
 		},
 		storeByCode: (parent, args, ctx, info) => {
-			console.log("ctx: ", ctx);
 			return generalRequest(`${URL}/${args.code}`, 'GET');
-			//const request = generalRequest(`${URL}/${args.code}`, 'GET');
-			//return auth(request, ctx.header, info.fieldName);
 		},
 	},
 	Mutation: {
 		createStore: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}`, 'POST', args.store);
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}`, 'POST', args.store);
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		updateStore: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args.code}`, 'PUT', args.store);
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args.code}`, 'PUT', args.store);
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		deleteStore: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args.code}`, 'DELETE');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args.code}`, 'DELETE');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		}
 	}
 };

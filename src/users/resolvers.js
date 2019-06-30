@@ -1,20 +1,24 @@
 import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
-import auth from '../rbacSchema';
+import auth from '../security/security';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
 		allUsers: (parent, args, ctx, info) => {
-			const request = getRequest(URL, '');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return getRequest(URL, '');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		userByCode: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args.code}`, 'GET');
 			try{
-				auth(request, ctx.header, info.fieldName);
-				return request;
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args.code}`, 'GET');
 			}catch(e){
 				console.log("Failed autenticating");
 				return e;
@@ -27,16 +31,31 @@ const resolvers = {
 	},
 	Mutation: {
 		createUser: (parent, args, ctx, info) =>{
-			const request = generalRequest(`${URL}`, 'POST', args.user);
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}`, 'POST', args.user);
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		updateUser: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args.code}`, 'PUT', args.user);
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args.code}`, 'PUT', args.user);
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		},
 		deleteUser: (parent, args, ctx, info) => {
-			const request = generalRequest(`${URL}/${args.code}`, 'DELETE');
-			return auth(request, ctx.header, info.fieldName);
+			try{
+				auth(ctx.header, info.fieldName);
+				return generalRequest(`${URL}/${args.code}`, 'DELETE');
+			} catch(e){
+				console.log("Failed autenticating");
+				return e;
+			}
 		}
 	}
 };
