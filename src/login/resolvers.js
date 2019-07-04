@@ -19,8 +19,8 @@ const resolvers = {
 	},
 	Mutation: {
 		login: async (_, { credentials }) =>{
-			//let pass = decrypt(credentials.password);
-			//credentials.password = pass;
+			let pass = decrypt(credentials.password);
+			credentials.password = pass;
 			try{
 				let res = await	generalRequest(`${URL}`, 'POST', credentials)
 				if(res){

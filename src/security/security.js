@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 export default function AuthRbac(header, method){
     //console.log("header auth: ", header);
     //console.log("method: ", method);
-    const {type} = isValidToken(header);
-    isValidRole(type, method);
+    const {role} = isValidToken(header);
+    isValidRole(role, method);
 }
 
 function isValidToken(header){
