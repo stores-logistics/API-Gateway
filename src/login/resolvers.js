@@ -19,24 +19,28 @@ const resolvers = {
 	},
 	Mutation: {
 		login: async (_, { credentials }) =>{
-			//let pass = decrypt(credentials.password);
-			//credentials.password = pass;
+			let pass = decrypt(credentials.password);
+			credentials.password = pass;
 			try{
 				let res = await	generalRequest(`${URL}`, 'POST', credentials)
 				if(res){
-					if (res === 'LDAPException found'){
-						return res
-					}else{
-						var token = await jwt.sign({username: credentials.username}, 'Secret Password', {expiresIn: "1h"})
-						return token
-					}				
+					//console.log("\nuser: ",res, "\n");
+					const payload = {
+						username: res.username,
+						role: res.type,
+						code: res.code,
+						storeId: res.storeId
+					};
+
+					var token = await jwt.sign(payload, 'Secret Password', {expiresIn: "1h"})
+					return token			
 				}else{
 					return -1
 				}
 			}catch(err){
 				console.log(err)
 			}			
-		}			
+		} 			
 	}
 };
 
